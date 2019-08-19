@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "hammerjs": "^2.0.8",
+    "jquery": "^3.4.1",
     "materialize-css": "^1.0.0-rc.2",
+    "materialize-js": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
