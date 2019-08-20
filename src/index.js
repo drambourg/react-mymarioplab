@@ -4,12 +4,21 @@ import './index.css';
 import App from './App';
 import 'materialize-js/index'
 import * as serviceWorker from './serviceWorker';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from "./Store/Reducer/rootReducer";
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
+import {reduxFirestore, getFirestore} from 'redux-firestore'
+import {reduxFirebase, getFirebase} from 'react-redux-firebase'
+import fbConfig from './config/fbConfig'
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer,
+    compose(
+        applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
+        reduxFirestore(fbConfig),
+        reduxFirebase(fbConfig)
+    )
+);
 
 ReactDOM.render(
     <Provider store={store}>
